@@ -1,0 +1,520 @@
+
+/* =========================================
+   1. VARIABLES Y ESTILOS GENERALES
+========================================= */
+
+:root {
+  --azul-oscuro: #1f3864;
+  --azul-principal: #2e75b6;
+  --azul-claro: #eaf3fc;
+  --fondo: #f4f7fb;
+  --blanco: #ffffff;
+  --texto: #263445;
+  --texto-secundario: #64748b;
+  --borde: #e2e8f0;
+  --sombra: 0 4px 15px rgba(31, 56, 100, 0.08);
+  --radio: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: var(--fondo);
+  color: var(--texto);
+  line-height: 1.6;
+}
+
+h1, h2, h3, p {
+  margin-top: 0;
+}
+
+h2, h3 {
+  color: var(--azul-oscuro);
+}
+
+p {
+  font-size: 1rem;
+  color: var(--texto-secundario);
+}
+
+a {
+  text-decoration: none;
+}
+
+/* =========================================
+   2. LAYOUT PRINCIPAL - CSS GRID
+========================================= */
+
+.layout {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "encabezado encabezado"
+    "sidebar contenido"
+    "pie pie";
+  min-height: 100vh;
+}
+
+/* =========================================
+   3. ENCABEZADO
+========================================= */
+
+.encabezado {
+  grid-area: encabezado;
+  background: linear-gradient(
+    135deg,
+    var(--azul-oscuro),
+    #294f85
+  );
+  color: var(--blanco);
+  padding: 1.2rem 2rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+.encabezado h1 {
+  margin: 0;
+  color: var(--blanco);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.encabezado nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.encabezado nav a {
+  color: var(--blanco);
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.encabezado nav a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* =========================================
+   4. SIDEBAR - MENÚ LATERAL
+========================================= */
+
+.sidebar {
+  grid-area: sidebar;
+  background-color: var(--blanco);
+  border-right: 1px solid var(--borde);
+  padding: 2rem 1rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sidebar-titulo {
+  margin: 0 0 0.5rem;
+  padding-left: 0.8rem;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--texto-secundario);
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+}
+
+.sidebar-menu li {
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.sidebar-menu a {
+  display: block;
+  color: var(--texto);
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.sidebar-menu a:hover {
+  background-color: var(--azul-claro);
+  color: var(--azul-principal);
+  transform: translateX(4px);
+}
+
+.sidebar-menu a.activo {
+  background-color: var(--azul-principal);
+  color: var(--blanco);
+  font-weight: 600;
+}
+
+.sidebar-pie {
+  margin-top: auto;
+  padding: 1rem 0.8rem 0;
+  border-top: 1px solid var(--borde);
+  font-size: 0.8rem;
+  color: var(--texto-secundario);
+}
+
+/* =========================================
+   5. CONTENIDO PRINCIPAL
+========================================= */
+
+.contenido {
+  grid-area: contenido;
+  min-width: 0;
+  padding: 2rem;
+}
+
+.contenido h2 {
+  color: var(--azul-oscuro);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+}
+
+.contenido h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.7rem;
+}
+
+/* =========================================
+   6. SECCIÓN DE PRESENTACIÓN
+========================================= */
+
+.presentar {
+  background-color: var(--blanco);
+  border-left: 5px solid var(--azul-principal);
+  border-radius: var(--radio);
+  padding: 1.8rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--sombra);
+}
+
+.presentar h2 {
+  margin-bottom: 0.8rem;
+}
+
+.presentar p {
+  margin-bottom: 0.8rem;
+}
+
+.presentar .meta {
+  font-family: inherit;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--azul-principal);
+  line-height: 1.4;
+}
+
+/* =========================================
+   7. CONTENEDOR DE TARJETAS
+========================================= */
+
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, 220px), 1fr)
+  );
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* =========================================
+   8. DISEÑO DE TARJETAS
+========================================= */
+
+.tarjeta {
+  background-color: var(--blanco);
+  border-radius: var(--radio);
+  padding: 1.8rem;
+  border: 1px solid var(--borde);
+  border-top: 4px solid var(--azul-principal);
+  box-shadow: var(--sombra);
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.tarjeta:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(31, 56, 100, 0.15);
+}
+
+.tarjeta img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.tarjeta h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  color: var(--azul-oscuro);
+}
+
+.tarjeta p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--texto-secundario);
+}
+
+/* =========================================
+   9. LISTAS
+========================================= */
+
+.contenido ul {
+  background-color: var(--azul-claro);
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem 1.2rem 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.contenido li {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.3rem 0;
+  color: var(--texto);
+}
+
+/* =========================================
+   10. PIE DE PÁGINA
+========================================= */
+
+.pie {
+  grid-area: pie;
+  text-align: center;
+  padding: 1.2rem;
+  background-color: var(--azul-oscuro);
+  color: var(--blanco);
+  font-size: 0.85rem;
+}
+
+.pie p {
+  color: var(--blanco);
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+/* =========================================
+   11. DISEÑO RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-areas:
+      "encabezado"
+      "sidebar"
+      "contenido"
+      "pie";
+  }
+
+  .encabezado {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem 1rem;
+  }
+
+  .encabezado nav {
+    justify-content: center;
+  }
+
+  .sidebar {
+    padding: 1rem;
+    border-right: none;
+    border-bottom: 1px solid var(--borde);
+  }
+
+  .sidebar-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .sidebar-menu li {
+    margin: 0;
+  }
+
+  .sidebar-pie {
+    display: none;
+  }
+
+  .contenido {
+    padding: 1.2rem;
+  }
+
+  .presentar {
+    padding: 1.5rem;
+  }
+
+  .presentar .meta {
+    font-size: 1.3rem;
+  }
+
+  .tarjetas {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+
+/* ===== Encabezado: marca a la izquierda, usuario a la derecha ===== */
+.encabezado {
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.encabezado-marca {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.encabezado-logo {
+  font-size: 1.8rem;
+}
+
+/* ===== Menú de usuario ===== */
+.menu-usuario {
+  position: relative;
+}
+
+.menu-usuario-boton {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.3rem 0.6rem;
+  border-radius: 30px;
+  font-family: inherit;
+  transition: background-color 0.2s;
+}
+
+.menu-usuario-boton:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+}
+
+.menu-usuario-datos {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+}
+
+.menu-usuario-nombre {
+  font-weight: bold;
+  font-size: 0.95rem;
+}
+
+.menu-usuario-rol {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.flecha {
+  font-size: 0.8rem;
+  transition: transform 0.2s;
+}
+
+/* ===== Menú desplegable (oculto por defecto) ===== */
+.menu-desplegable {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 200px;
+  margin: 0;
+  padding: 0.5rem 0;
+  list-style: none;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+}
+
+/* Se muestra al pasar el mouse o al hacer clic/tab en el botón */
+.menu-usuario:hover .menu-desplegable,
+.menu-usuario:focus-within .menu-desplegable {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.menu-usuario:hover .flecha,
+.menu-usuario:focus-within .flecha {
+  transform: rotate(180deg);
+}
+
+.menu-desplegable a {
+  display: block;
+  padding: 0.6rem 1rem;
+  color: #333;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.menu-desplegable a:hover {
+  background-color: #f0f4fa;
+}
+
+.menu-desplegable .separador {
+  height: 1px;
+  background-color: #e5e5e5;
+  margin: 0.4rem 0;
+}
+
+.menu-desplegable .cerrar-sesion {
+  color: #c0392b;
+  font-weight: bold;
+}
+
+/* En celular se oculta el nombre y queda solo la foto */
+@media (max-width: 768px) {
+  .menu-usuario-datos {
+    display: none;
+  }
+}
